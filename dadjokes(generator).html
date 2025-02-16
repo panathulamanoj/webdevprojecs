@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <style>
+            body{
+                background-color: lightgrey;
+            }
+            li:hover{
+                cursor: pointer;
+            }
+            #getj{
+                font-size: 30px;
+                border-radius: 10%;
+            }
+            #tbox{
+                width:400px;
+                display:flex;
+                align-items: center;
+                border-radius: 5%;
+                padding :5px 5px 5px 5px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+
+            }
+            #list li{
+                font-size: 20px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Generator Dad Jokes </h1>
+        <button id="getj">Get Joke</button>
+        <h2>click on the joke you want to delete</h2>
+        <div id="tbox">
+        <ul id="list">
+        
+        </ul>
+        </div>
+        <script >
+            const bt=document.querySelector("#getj");
+const li=document.querySelector("#list");
+li.addEventListener('click',(r)=>{
+r.target.remove();
+})
+bt.addEventListener('click',fn);
+function fn(){
+    const ele=document.createElement('li');
+fetch("https://icanhazdadjoke.com/",{headers:{Accept:'application/json'}}).then((res)=>{
+    console.log(res);
+    return res.json();
+}).then((data)=>{
+ele.innerText=`${data.joke}`;
+}).catch((e)=>{
+ele.innerText=`No Jokes available right now`;
+})
+li.appendChild(ele);
+}
+        </script>
+    </body>
+</html>
