@@ -25,15 +25,15 @@ const catchasync = require('./utils/Catchasync.js');
 const helmet = require('helmet');
 const { contentSecurityPolicy } = require('helmet');
 const mongoStore= require('connect-mongo');
-const dburl=process.env.db_Url ;
-// || 'mongodb://localhost:27017/yelp-camp'
+const dburl=process.env.db_Url || 'mongodb://localhost:27017/yelp-camp';
+const port=process.env.PORT || 3000;
 mongoose.connect(dburl);
 const db=mongoose.connection;
 db.on("error",console.error.bind(console,"Connection error:"));
 db.once("open",()=>{
     console.log("successfully connected to db");
 });
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("listening on port 3000");
 });
 app.engine('ejs',ejsmate);
