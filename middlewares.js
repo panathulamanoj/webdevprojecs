@@ -21,7 +21,7 @@ module.exports.validateschema=function(req,res,next)
         console.log(result);
         const message=result.error.details.map((e)=>e.message).join(',');
         console.log(message)
-        throw new Expresserror(message,500);
+       return throw new Expresserror(message,500);
     }
     else
     {
@@ -56,7 +56,7 @@ module.exports.validaterev=function validaterev(req,res,next)
         console.log(result);
         const message=result.error.details.map((e)=>e.message).join(',');
         console.log(message)
-        throw new Expresserror(message,500);
+       return throw new Expresserror(message,500);
     }
     else
     {

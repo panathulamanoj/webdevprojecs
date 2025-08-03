@@ -112,6 +112,7 @@ app.use(passport.session());
 passport.use(new passportlocal(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 app.use((req,res,next)=>{
     res.locals.success=req.flash('success');
     res.locals.error=req.flash('error');
@@ -132,6 +133,12 @@ res.send(newuser);
 app.all(/(.*)/,(req,res)=>{
     res.send("404 not found beyotch");
 });
+app.use((err, req, res, next) => {
+  console.error("🔥 Global Error:", err.stack || err);
+  if (res.headersSent) return next(err);
+  res.status(500).render('error.ejs', { err });
+});
+
 app.use((err,req,res,next)=>{
     if(err.name!='error')
     {

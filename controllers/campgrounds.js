@@ -21,11 +21,21 @@ res.render('campgrounds/show.ejs',{campground});
 
 module.exports.loadcampeditpage=async(req,res)=>{
 const campground= await Campground.findById(req.params.id);
+if(!campground)
+{
+    req.flash('error','cannot find the campground');
+    return res.redirect('/campgrounds');
+}
 res.render('campgrounds/edit.ejs',{campground});
 }
 
 module.exports.editcamp=async(req,res)=>{
 const campground=await Campground.findByIdAndUpdate(req.params.id,req.body.campground);
+if(!campground)
+{
+    req.flash('error','cannot find the campground');
+    return res.redirect('/campgrounds');
+}
 if(req.body.deleteimgs && req.body.deleteimgs.length>=1)
 {
 for(let filename of req.body.deleteimgs)
