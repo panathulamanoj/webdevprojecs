@@ -15,7 +15,8 @@ includes input validation, error
 handling, and secure session 
 management.
 
-use command node app.js run the 
-the app in localhost:3000 you 
-have to run the command in the
+use command: 
+node app.js
+run the the app in http://localhost:3000/ 
+you have to run the command in the
 /yelpcamp directory.
