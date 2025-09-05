@@ -17,5 +17,5 @@ management.
 
 use command node app.js run the 
 the app in localhost:3000 you 
-have to run the comman in the
+have to run the command in the
 /yelpcamp directory.
