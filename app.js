@@ -119,6 +119,10 @@ app.use((req,res,next)=>{
     res.locals.currentuser=req.user;
     next();
 })
+
+app.get("/loaderio-f8662489f53a862525a2425b2b549172.txt", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "loaderio-f8662489f53a862525a2425b2b549172.txt"));
+});
 app.use('/',userroutes);
 app.use('/campgrounds',campgroundroutes);
 app.use('/campgrounds/:id/reviews',reviewroutes);
@@ -132,11 +136,6 @@ res.send(newuser);
 }));
 app.all(/(.*)/,(req,res)=>{
     res.send("404 not found beyotch");
-});
-app.use((err, req, res, next) => {
-  console.error("🔥 Global Error:", err.stack || err);
-  if (res.headersSent) return next(err);
-  res.status(500).render('error.ejs', { err });
 });
 
 app.use((err,req,res,next)=>{
